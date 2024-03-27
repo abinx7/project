@@ -1,0 +1,189 @@
+<html>
+<body background="grey">
+    
+
+<link rel="stylesheet" href="style.css">
+
+<br><br><br>
+
+<div>
+    <h4>semester 3</h4>
+    
+    
+    <table border="1">
+    <tr>
+    <th>SNo</th>
+    <th>SubjectName</th>
+    <th>Credit</th>
+    <th>Grade</th>
+    </tr><tbody id="userTableBodySem1">
+    <tr>
+    <td>1</td>
+    <td>Computer Organisation</td>
+    <td contenteditable="true">4</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td>Programming in C</td>
+    <td contenteditable="true">3</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+    <td>3</td>
+    <td>Database Management Systems</td>
+    <td contenteditable="true">3</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+    <td>4</td>
+    <td>Digital Computer Fundamentals</td>
+    <td contenteditable="true">3</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+    <td>5</td>
+    <td>Programming in C Lab</td>
+    <td contenteditable="true">1.5</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+    <td>6</td>
+    <td>Database Management System lab</td>
+    <td contenteditable="true">1.5</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>    
+    <td>7</td>
+    <td>Digital Computer Fundamentals Lab</td>
+    <td contenteditable="true">1.5</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <td>8</td>
+    <td>Web Technology lab</td>
+    <td contenteditable="true">2.5</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr>
+    <td>9</td>
+    <td>Computer System Hardware Lab</td>
+    <td contenteditable="true">0</td>
+    <td>
+        <select class="grades">
+            <option value="10" >S</option>
+            <option value="9" >A</option>
+            <option value="8" >B</option>
+            <option value="7" >C</option> 
+            <option value="6" >D</option>
+            <option value="5" >E</option>
+            <option value="0" >F</option>
+        </select>
+    </td>
+    </tr></tbody>
+    </table><br>
+    <button id="clearButtonSem1" onclick="clearContent('userTableBodySem1')">Clear</button>
+<button id="calculateButtonSem1" onclick="calculateSGPA('userTableBodySem1')">Calculate</button>
+<p>SGPA: <span id="sgpaSem1">-</span></p>
+</div>
+<script>
+    function clearContent(tableId) {
+      document.querySelectorAll(`#${tableId} td[contenteditable="true"]`).forEach(function(cell) {
+        cell.textContent = '';
+      });
+    }
+  
+    function calculateSGPA(tableId) {
+      const rows = document.querySelectorAll(`#${tableId} tr`);
+      let totalCredits = 0;
+      let totalGradePoints = 0;
+      rows.forEach(row => {
+        const credit = parseInt(row.querySelector('td:nth-child(3)').textContent);
+        const gradePoint = parseFloat(row.querySelector('.grades').value);
+        totalCredits += credit;
+        totalGradePoints += credit * gradePoint;
+      });
+      const sgpa = totalGradePoints / totalCredits;
+      document.getElementById(`sgpa${tableId.slice(-4)}`).textContent = sgpa.toFixed(2);
+    }
+  </script>
+<center>
+    <button class="btn7"><a href="semester.html" style="text-decoration: none;">Back</button>
+    </center>
